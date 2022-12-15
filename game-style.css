@@ -1,3 +1,27 @@
+/* css variables */
+:root{
+    --cell-size:100px;
+
+    --color: rgb(73, 190, 73); /* hover color */
+    --color-set: rgb(29, 29, 143); /* symbol set color*/
+    --l: 10px;    /* line-width */
+}
+
+body{
+    margin: 0;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
 .cell{
     width: var(--cell-size);
     height: var(--cell-size);
@@ -9,21 +33,44 @@
     cursor: pointer;
 }
 
-/* no hover effect on already filled cell */
-.cell.x, .cell.circle {
-    cursor: not-allowed;
+
+/* for symbol codes refer to: https://www.toptal.com/designers/htmlarrows/symbols/ */
+.mark-x{
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    position: relative;
 }
 
-/* circle hover */
-.board.circle .cell:not(.circle):not(.x):hover {
-    background: radial-gradient(var(--color) 60%, transparent 60%);
+.mark-x:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\2716";
+    color:rgb(71, 77, 168);
+    font-size: 76px; 
+    line-height: 100px;
+    text-align: center;
+}
+.mark-o{
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    position: relative;
 }
 
-/* for cross (set) */
-.cell:not(.circle).x {
-	background: linear-gradient(to top right, transparent calc(50% - var(--l) / 2), var(--color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2)),
-				linear-gradient(to bottom right, transparent calc(50% - var(--l) / 2), var(--color-set) calc(50% - var(--l) / 2) calc(50% + var(--l) / 2), transparent calc(50% + var(--l) / 2));
-	background-size: 80% 80%;
-	background-repeat: no-repeat;
-	background-position: center;
+.mark-o:after {
+    position: absolute;
+    top: -7px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "\26AC";
+    color:rgb(44, 116, 57);
+    font-size: 170px; 
+    line-height: 100px;
+    text-align: center;
 }
+
