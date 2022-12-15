@@ -10,10 +10,27 @@
 body{
     margin: 0;
 }
+.navbar{
+    border-bottom: 2px solid #333;
+    width: 100%;
+    padding: 15px;
+    text-align:center;
+    margin-bottom: 0;
+}
+
+.winning-message{
+    height: 10vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    font-size:5em;
+}
 
 .board {
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     display: grid;
     justify-content: center;
     align-content: center;
@@ -74,3 +91,52 @@ body{
     text-align: center;
 }
 
+.disabled-box{
+    pointer-events:none;
+    background-color:lightgray;
+}
+
+
+@keyframes rainbow {
+    100%,
+    0% {
+        color: rgba(255, 0, 0, 0.3);
+    }
+    8% {
+        color: rgba(255, 128, 0, 0.3);
+    }
+    16% {
+        color: rgb(255, 255, 0, 0.3);
+    }
+    25% {
+        color: rgb(127, 255, 0, 0.3);
+    }
+    33% {
+        color: rgb(0, 255, 0, 0.3);
+    }
+    41% {
+        color: rgb(0, 255, 127, 0.3);
+    }
+    50% {
+        color: rgb(0, 255, 255, 0.3);
+    }
+    58% {
+        color: rgb(0, 127, 255, 0.3);
+    }
+    66% {
+        color: rgb(0, 0, 255, 0.3);
+    }
+    75% {
+        color: rgb(127, 0, 255, 0.3);
+    }
+    83% {
+        color: rgb(255, 0, 255, 0.3);
+    }
+    91% {
+        color: rgb(255, 0, 127, 0.3);
+    }
+}
+
+.winner{
+    animation: rainbow 4s infinite linear;
+}
