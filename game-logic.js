@@ -1,5 +1,7 @@
 console.log("first commit");
 
+// occasionally referring to: https://www.codebrainer.com/blog/tic-tac-toe-javascript-game
+
 const PLAYER_X = 'x';
 let player_x_boxes = [12,3,3];
 const PLAYER_O = 'o';
