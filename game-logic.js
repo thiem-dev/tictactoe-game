@@ -51,14 +51,12 @@ function addSymbol(boxPickedObject){
             boxPickedObject.classList.add("disabled-box");
             boxPickedObject.setAttribute("disabled", "disabled");
             player_x_boxes.push(parseInt(boxPickedObject.getAttribute("value")));
-            player_turn = 'o';
             break;
         case 'o':
             boxPickedObject.classList.add("mark-o");
             boxPickedObject.classList.add("disabled-box");
             boxPickedObject.setAttribute("disabled", "disabled");
             player_o_boxes.push(parseInt(boxPickedObject.getAttribute("value")));
-            player_turn = 'x';
             break;
     }
 }
@@ -72,15 +70,24 @@ function checkGrid(boxPickedObject){
         addSymbol(boxPickedObject);
         turnCount++;
 
-        if(checkWinner() && turnCount >= 4){
+        if(checkWinner() && turnCount >= 3){
             console.log(player_turn);
             winGame();
         } 
+        switchTurns();
     }
 
-    if(turnCount >= 10){
+    if(turnCount >= 9){
         isDraw();
         return;
+    }
+}
+
+function switchTurns(){
+    if(player_turn === 'x'){
+        player_turn = 'o';
+    } else{
+        player_turn = 'x';
     }
 }
 
@@ -97,14 +104,25 @@ function checkWinner(){
         comboNumber: a
         array1.includes(a)
     */
-
-    return WINNING_COMBINATIONS.some(combination => {
-        // console.log(combination);
-        return combination.every(comboNumber => {
-            // console.log(comboNumber);
-            return player_o_boxes.includes(comboNumber);
+    if(player_turn === 'x'){
+        return WINNING_COMBINATIONS.some(combination => {
+            // console.log(combination);
+            return combination.every(comboNumber => {
+                // console.log(comboNumber);
+                return player_x_boxes.includes(comboNumber);
+            })
         })
-    })
+    }
+    else if(player_turn === 'o'){
+        return WINNING_COMBINATIONS.some(combination => {
+            // console.log(combination);
+            return combination.every(comboNumber => {
+                // console.log(comboNumber);
+                return player_o_boxes.includes(comboNumber);
+            })
+        })
+    }
+
 }
 
 
@@ -117,7 +135,7 @@ function endGame(){
 }
 
 function winGame(){
-    winningMessage.textContent = "The Winner is: "+ player_turn;
+    winningMessage.textContent = "The Winner is: " + player_turn;
     winningBox.classList.add("winner");
     endGame();
 }
